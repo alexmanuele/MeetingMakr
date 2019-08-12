@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block body %}
+<div class="row">
+  <div class='col-12 pt-5 pb-5'>
+    <p>
+      <button type="button" class="btn btn-secondary btn-lg btn-block js-generate" style="height:10rem">Select a Presenter</button>
+    </p>
+  </div>
+</div>
+<div id="person-list" class="row pb-5">
+  {% include 'partial_person_list.html' %}
+</div>
+{% endblock body %}
+{% block scripts %}
+  <script src="{% static 'choose/js/choose.js' %}"></script>
+{% endblock scripts %}

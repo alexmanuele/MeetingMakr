@@ -1,0 +1,32 @@
+<div class="col-5">
+  <div class="card">
+    <div class="card-header text-white bg-primary">
+      To Present
+    </div>
+    <div class="list-group">
+      {% for item in potential %}
+      <button type="button"
+              class="btn list-group-item list-group-item-action js-update-person"
+              data-url="{% url 'person_update' item.id %}">
+              {{ item }}
+      </button>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<div class="col-5">
+  <div class="card">
+    <div class="card-header text-white bg-danger">
+      Already Presented
+    </div>
+    <div class="list-group">
+      {% for item in done %}
+      <button type="button"
+              class="btn list-group-item list-group-item-action js-update-person"
+              data-url="{% url 'person_update' item.id %}">
+              {{ item }}
+      </button>
+      {% endfor %}
+    </div>
+  </div>
+</div>
