@@ -14,7 +14,7 @@ $(function (){
 
     });
   });
-  $(".js-update-person").click(function () {
+  $(".js-form-load").click(function () {
     console.log("Sanity check");
     var btn = $(this);
     jQuery.ajax({
@@ -29,7 +29,7 @@ $(function (){
       }
     });
   });
-  $(".js-update-person-form").click(function () {
+  $(".js-form-submit").click(function () {
     var btn = $(this);
     console.log('submit check');
     jQuery.ajax({
@@ -48,4 +48,21 @@ $(function (){
       }
     })
   });
+  $(".js-create-member-form").click(function(){
+    var btn = $(this);
+    console.log('create check');
+    jQuery.ajax({
+      url: btn.attr("data-url"),
+      type: 'get',
+      dataType: 'json',
+      beforeSend: function() {
+        $("#editModal").modal("show");
+      },
+      success: function(data){
+        $("#editModal .modal-content").html(data.html_form);
+      }
+    })
+  });
+
+
 });

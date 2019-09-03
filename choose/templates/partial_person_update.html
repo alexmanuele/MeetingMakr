@@ -11,6 +11,7 @@
   </div>
   <div class="modal-footer">
     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-    <button type="submit" class="js-update-person-form btn btn-primary">Update Person</button>
+    <a  href="{% url 'person_delete' form.instance.pk %}" type="button" class="btn btn-danger js-delete-person">Delete Member</a>
+    <button type="submit" class="js-form-submit btn btn-primary">Update Person</button>
   </div>
 </form>

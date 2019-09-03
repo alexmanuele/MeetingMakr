@@ -80,6 +80,27 @@ def person_present(request, pk):
     done = Person.objects.filter(presented=True)
     return render(request, "meetings.html", context={'potential': togo, 'done': done})
 
+def person_create(request):
+    if request.method == "POST":
+        form = NewPersonForm(request.POST)
+    else:
+        form = NewPersonForm()
+    return save_person_form(request, form, 'partial_person_create.html')
+
+def person_delete(request, pk):
+    person = get_object_or_404(Person, pk=pk)
+    data = dict()
+#    if request.method == 'POST':
+    person.delete()
+    data['form_is_valid'] = True
+    togo = Person.objects.filter(presented=False)
+    done = Person.objects.filter(presented=True)
+    data['html_person_list'] = render_to_string('partial_person_list.html',
+                                        {'potential': togo, 'done': done})
+    return render(request, 'meetings.html',  context={'potential': togo, 'done': done})
+
+
+
 class MeetingMaker(TemplateView):
     template_name="meetings.html"
     choice = None
@@ -87,42 +108,3 @@ class MeetingMaker(TemplateView):
         togo = Person.objects.filter(presented=False)
         done = Person.objects.filter(presented=True)
         return render(self.request, self.template_name, context={'potential': togo, 'done': done})
-
-"""
-    def get(self, request):
-        togo = Person.objects.filter(presented=False)
-        done = Person.objects.filter(presented=True)
-        #self.refresh_qs()
-        return render(self.request, self.template_name, context={'potential': togo, 'done': done})
-
-    def post(self, request):
-        if 'generate' in request.POST:
-            togo = Person.objects.filter(presented=False)
-            self.choice = self.choose_presenter(togo)
-            print("Modal: ", self.choice)
-            return render(self.request, self.template_name, context={'newperson': self.choice})
-        elif 'yes' in request.POST:
-            print("After yes: ", self.choice)
-            if self.choice:
-                self.choice.presented=True
-                self.choice.save()
-            print(self.choice, " saved")
-            return redirect('index')
-        elif 'no' in request.POST:
-            return redirect('index')
-
-    def choose_presenter(self, qs):
-        if qs:
-            return random.choice(qs)
-
-
-    def refresh_qs(self):
-        self.togo = Person.objects.filter(presented=False)
-        self.done = Person.objects.filter(presented=True)
-        self.choose = list(self.togo)
-        if self.choose:
-            self.choice = random.choice(self.choose)
-            print("refresh: ", self.choice)
-        else:
-            self.choose = "No one!"
-"""
