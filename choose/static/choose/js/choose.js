@@ -1,7 +1,8 @@
 $(function (){
   $(".js-generate").click(function (){
+    var btn = $(this);
     jQuery.ajax({
-      url: '/choose/select/',
+      url: btn.attr("data-url"),
       type: 'get',
       dataType: 'json',
       beforeSend: function() {

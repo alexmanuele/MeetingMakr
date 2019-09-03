@@ -1,10 +1,11 @@
 <div class="col-5">
   <div class="card">
     <button class="btn card-header text-white bg-primary js-create-member-form"
-            data-url="{% url 'person_create' %}">
+            data-url="{% url 'person_create' lab.id %}">
       To Present. Click to add &plus;
     </button>
     <div class="list-group">
+      {% if potential %}
       {% for item in potential %}
       <button type="button"
               class="btn list-group-item list-group-item-action js-form-load"
@@ -12,6 +13,7 @@
               {{ item }}
       </button>
       {% endfor %}
+      {% endif %}
     </div>
   </div>
 </div>
@@ -21,6 +23,7 @@
       Already Presented
     </div>
     <div class="list-group">
+      {% if done %}
       {% for item in done %}
       <button type="button"
               class="btn list-group-item list-group-item-action js-form-load"
@@ -28,6 +31,7 @@
               {{ item }}
       </button>
       {% endfor %}
+      {% endif %}
     </div>
   </div>
 </div>

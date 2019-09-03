@@ -1,0 +1,19 @@
+<div class="col-12">
+  <div class="card">
+    <button class="btn card-header text-white bg-secondary js-form-load"
+            data-url="{% url 'lab_create' %}">
+      Click here to add a new Lab Group.
+    </button>
+    <div class="list-group">
+      {% if labs %}
+      {% for item in labs %}
+      <a href="{% url 'index' item.id %}"
+         type="button"
+         class="btn list-group-item list-group-item-action">
+      {{ item }}
+      </a>
+      {% endfor %}
+      {% endif %}
+    </div>
+  </div>
+</div>

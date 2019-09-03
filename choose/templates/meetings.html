@@ -2,9 +2,14 @@
 {% load static %}
 {% block body %}
 <div class="row">
+  <div class='col-12 pt-5'>
+    <h2>Meeting Scheduler for {{ lab.name }}</h2>
+  </div>
+</div>
+<div class="row">
   <div class='col-12 pt-5 pb-5'>
     <p>
-      <button type="button" class="btn btn-secondary btn-lg btn-block js-generate" style="height:10rem">Select a Presenter</button>
+      <button type="button" data-url="{% url 'select' lab.id %}" class="btn btn-secondary btn-lg btn-block js-generate" style="height:10rem">Select a Presenter</button>
     </p>
   </div>
 </div>
