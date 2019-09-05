@@ -47,7 +47,7 @@ def save_person_form(request, form, template_name, lab):
             done = Person.objects.filter(presented=True, lab=lab)
             data['html_person_list'] = render_to_string('partial_person_list.html',
                                             {'potential': togo, 'done': done, 'lab':lab})
-            return render(request, 'meetings.html',  context={'potential': togo, 'done': done, 'lab': lab})
+            #return render(request, 'meetings.html',  context={'potential': togo, 'done': done, 'lab': lab})
         else:
             data['form_is_valid'] = False
 
